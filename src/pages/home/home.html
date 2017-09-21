@@ -8,11 +8,25 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>The present code is to demostrate my javascript skills</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+  <p *ngIf="requestApiKey">
+     In order to start working correctly with the End points provided i need an API_Key, so please insert it in the following input field
   </p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <form [formGroup]="apiForm" novalidate (ngSubmit)="storeApiKey(apiForm)" *ngIf="requestApiKey">
+    <ion-item>
+      <ion-label color="primary">API Key</ion-label>
+      <ion-input class="col" type="input" formControlName="api" name="apiKey" placeholder="ej. 1k43Y6yfQX3mrunU9TRR9hH5swL2IXOfiZwJ0n0n"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button  full class="" type="submit">Sent</button>
+    </ion-item>
+  </form>
+
+  <p *ngIf="!requestApiKey">
+     Great we have already an ApiKey to work with :)<br>
+     You can go and check the functionality in the User or Developer pages
+  </p>
+
 </ion-content>
