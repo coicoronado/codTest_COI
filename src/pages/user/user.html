@@ -9,5 +9,25 @@
 
 
 <ion-content padding>
+  <p *ngIf="requestApiKey">
+     In order to start working correctly with the End points provided i need an API_Key, so please insert it the home view please
+  </p>
+  <p *ngIf="!requestApiKey">
+     Please type a food that you want to know more about in the next input field
+  </p>
+  <form [formGroup]="foodForm" novalidate (ngSubmit)="searchFood(foodForm)" *ngIf="!requestApiKey">
+    <ion-item>
+      <ion-label color="primary">Food To Search</ion-label>
+      <ion-input class="col" type="input" formControlName="query" name="query" placeholder="ej. Banana"></ion-input>
+    </ion-item>
+    <ion-item>
+      <button ion-button  full class="" type="submit">Sent</button>
+    </ion-item>
+  </form>
 
+  <ion-list *ngIf="results.length !=0">
+      <button ion-item (click)="goDetail()" *ngFor="let result of results">
+        {{ result.name }}
+      </button>
+  </ion-list>
 </ion-content>

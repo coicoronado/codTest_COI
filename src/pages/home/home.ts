@@ -29,7 +29,7 @@ export class HomePage {
   }
 
   /**
-  *
+  * presetToast will call the toaster message in the top of the app
   */
   presentToast(message) {
 
