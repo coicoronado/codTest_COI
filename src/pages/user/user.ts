@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
+import { FoodDetailPage } from '../food-detail/food-detail';
+
 import { Storage } from '@ionic/storage';
 import { NdbServiceProvider } from '../../providers/ndb-service/ndb-service';
 
@@ -54,8 +56,12 @@ export class UserPage {
   /**
   * goDetail
   */
-  goDetail(){
-    console.log('hola');
+  goDetail(ndbno){
+    this._ndb.detailsFood(ndbno,this.apiKey).then( response => {
+      console.log(response);
+      // now i can change to another view with the response as the params nav
+      this.navCtrl.push(FoodDetailPage, {params:response['report']['food']});
+    });
   }
 
   /**

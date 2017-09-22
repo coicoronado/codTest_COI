@@ -1,0 +1,23 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> {{foodDetails.name}} </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid *ngIf="foodDetails.nutrients.length !=0">
+    <ion-row>
+      <ion-col>Name</ion-col>
+      <ion-col>Grams</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let nutrient of foodDetails.nutrients" [hidden]="nutrient.unit!='g' && nutrient.unit!='mg'">
+      <ion-col>{{ nutrient.name }}</ion-col>
+      <ion-col>{{ convertToGrams(nutrient) }}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

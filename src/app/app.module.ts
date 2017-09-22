@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { UserPage } from '../pages/user/user';
 import { DeveloperPage } from '../pages/developer/developer';
+import { FoodDetailPage } from '../pages/food-detail/food-detail';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import { MyConfs } from './constants';
     HomePage,
     ListPage,
     UserPage,
-    DeveloperPage
+    DeveloperPage,
+    FoodDetailPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { MyConfs } from './constants';
     HomePage,
     ListPage,
     UserPage,
-    DeveloperPage
+    DeveloperPage,
+    FoodDetailPage
   ],
   providers: [
     StatusBar,

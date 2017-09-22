@@ -30,11 +30,6 @@ export class NdbServiceProvider {
         this.http.get(this.baseUrl+this.extraInformation,options).map(res => res.json()).subscribe(data => {
           // console.log(data);
           this.data = data;
-          // this.data = data.locations;
-          // this.data = this.applyHaversine(data.locations);
-          // this.data.sort((locationA, locationB) => {
-          //     return locationA.distance - locationB.distance;
-          // });
 
           resolve(this.data);
         });
@@ -45,8 +40,31 @@ export class NdbServiceProvider {
 
   }
 
-  // reports
-  // https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=DEMO_KEY
+  /**
+  * detailsFood will call for the report endpoint passing a number for more information about the endpoint
+  * go to https://ndb.nal.usda.gov/ndb/doc/apilist/API-FOOD-REPORT.md
+  * complete url: // https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=DEMO_KEY
+  */
+  detailsFood(ndbno,apiKey){
+    if(ndbno && apiKey){
+      this.extraInformation = 'reports/?format=json&ndbno='+ndbno+'&api_key='+apiKey;
+      let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+      let options = new RequestOptions({ headers: headers }); // Create a request option
+      return new Promise(resolve => {
+        this.http.get(this.baseUrl+this.extraInformation,options).map(res => res.json()).subscribe(data => {
+          // console.log(data);
+          this.data = data;
+
+
+          resolve(this.data);
+        });
+      });
+    } else {
+      console.log('i dont the complete information to continue');
+    }
+
+  }
+
 
   // nutrients
   // https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=DEMO_KEY&nutrients=205&nutrients=204&nutrients=208&nutrients=269&ndbno=01009
